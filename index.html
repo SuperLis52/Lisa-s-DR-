@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днем Рождения, Сестренка!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            color: #5a2d82;
+            padding: 20px;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            padding: 40px;
+            margin: 20px 0;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-family: 'Comic Neue', cursive;
+            font-size: 3.5rem;
+            color: #ff6b6b;
+            text-shadow: 3px 3px 0 #ffeaa7;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .age {
+            font-size: 6rem;
+            color: #ff9ff3;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 4px 4px 0 #feca57;
+            animation: spin 8s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .message {
+            background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 5px dashed #ff9ff3;
+        }
+        
+        .message p {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .signature {
+            text-align: right;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            font-style: italic;
+            margin-top: 20px;
+        }
+        
+        .gifts {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .gift {
+            width: 120px;
+            height: 120px;
+            background: #ff9ff3;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .gift:nth-child(2) {
+            animation-delay: 0.5s;
+            background: #feca57;
+        }
+        
+        .gift:nth-child(3) {
+            animation-delay: 1s;
+            background: #1dd1a1;
+        }
+        
+        .gift:nth-child(4) {
+            animation-delay: 1.5s;
+            background: #54a0ff;
+        }
+        
+        .gift:hover {
+            transform: translateY(-15px) scale(1.1);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gift i {
+            font-size: 4rem;
+            color: white;
+        }
+        
+        .balloons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50%;
+            animation: balloonFloat 15s linear infinite;
+            bottom: -100px;
+            filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
+        }
+        
+        .balloon::before {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 40px;
+            background: rgba(0,0,0,0.2);
+        }
+        
+        @keyframes balloonFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            border: 10px solid #feca57;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background: #ffeaa7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .photo-frame i {
+            font-size: 5rem;
+            color: #ff9ff3;
+        }
+        
+        .cake {
+            width: 200px;
+            height: 100px;
+            margin: 40px auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .cake-layer {
+            width: 160px;
+            height: 40px;
+            background: #f8c4d9;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .cake-layer:nth-child(1) {
+            top: 0;
+            background: #ff9ff3;
+        }
+        
+        .cake-layer:nth-child(2) {
+            top: 30px;
+            background: #ff7979;
+        }
+        
+        .cake-layer:nth-child(3) {
+            top: 60px;
+            background: #feca57;
+        }
+        
+        .candle {
+            width: 8px;
+            height: 30px;
+            background: #ff9ff3;
+            position: absolute;
+            top: -35px;
+            border-radius: 5px;
+            animation: flicker 1.5s infinite alternate;
+        }
+        
+        .candle:nth-child(4) { left: 70px; }
+        .candle:nth-child(5) { left: 90px; }
+        .candle:nth-child(6) { left: 110px; }
+        .candle:nth-child(7) { left: 130px; }
+        
+        @keyframes flicker {
+            0%, 100% { box-shadow: 0 0 10px #ff9a9e; }
+            50% { box-shadow: 0 0 20px #ff7979, 0 0 30px #ff6b6b; }
+        }
+        
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .party-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .party-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #5a2d82;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .age { font-size: 4rem; }
+            .message p { font-size: 1.2rem; }
+            .gift { width: 90px; height: 90px; }
+            .gift i { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="balloons" id="balloons"></div>
+        
+        <div class="header">
+            <h1>С Днем Рождения!</h1>
+            <div class="age">8</div>
+            <p>Любимой сестренке от брата Елисея</p>
+        </div>
+        
+        <div class="photo-frame">
+            <i class="fas fa-camera"></i>
+        </div>
+        
+        <div class="message">
+            <p>Дорогая сестренка!</p>
+            <p>Поздравляю тебя с твоим 8-летием! Ты самая лучшая сестра на свете. Желаю тебе много счастья, радости, веселья и исполнения всех желаний!</p>
+            <p>Пусть каждый твой день будет наполнен улыбками, играми и чудесами. Ты самая умная, красивая и добрая девочка!</p>
+            <p>Люблю тебя очень сильно!</p>
+            <div class="signature">Твой брат Елисей ❤️</div>
+        </div>
+        
+        <div class="cake">
+            <div class="cake-layer"></div>
+            <div class="cake-layer"></div>
+            <div class="cake-layer"></div>
+            <div class="candle"></div>
+            <div class="candle"></div>
+            <div class="candle"></div>
+            <div class="candle"></div>
+        </div>
+        
+        <div class="gifts">
+            <div class="gift" onclick="openGift(this)"><i class="fas fa-gift"></i></div>
+            <div class="gift" onclick="openGift(this)"><i class="fas fa-ice-cream"></i></div>
+            <div class="gift" onclick="openGift(this)"><i class="fas fa-gamepad"></i></div>
+            <div class="gift" onclick="openGift(this)"><i class="fas fa-heart"></i></div>
+        </div>
+        
+        <button class="party-btn" onclick="startParty()">Запустить праздник!</button>
+        
+        <div class="footer">
+            <p>С любовью от Елисея ❤️</p>
+            <p>2023</p>
+        </div>
+    </div>
+    
+    <div class="confetti" id="confetti"></div>
+    
+    <script>
+        // Создание шариков
+        function createBalloons() {
+            const balloonsContainer = document.getElementById('balloons');
+            const colors = ['#ff9ff3', '#feca57', '#1dd1a1', '#54a0ff', '#ff6b6b', '#48dbfb'];
+            
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                
+                // Случайный цвет
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.backgroundColor = color;
+                
+                // Случайная позиция
+                balloon.style.left = Math.random() * 100 + '%';
+                
+                // Случайная задержка анимации
+                balloon.style.animationDelay = Math.random() * 15 + 's';
+                
+                // Случайный размер
+                const size = 40 + Math.random() * 40;
+                balloon.style.width = size + 'px';
+                balloon.style.height = size * 1.3 + 'px';
+                
+                balloonsContainer.appendChild(balloon);
+            }
+        }
+        
+        // Открытие подарков
+        function openGift(gift) {
+            gift.style.transform = 'scale(0) rotate(360deg)';
+            gift.style.opacity = '0';
+            
+            // Создаем эффект взрыва конфетти
+            createMiniConfetti(gift);
+            
+            // Через некоторое время возвращаем подарок
+            setTimeout(() => {
+                gift.style.transform = '';
+                gift.style.opacity = '1';
+            }, 2000);
+        }
+        
+        // Создание мини-конфетти для подарков
+        function createMiniConfetti(element) {
+            const rect = element.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            
+            for (let i = 0; i < 30; i++) {
+                createConfettiPiece(x, y);
+            }
+        }
+        
+        // Создание конфетти для кнопки
+        function startParty() {
+            // Анимация кнопки
+            const btn = document.querySelector('.party-btn');
+            btn.style.animation = 'pulse 0.5s 3';
+            
+            // Создание большого количества конфетти
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    createConfettiPiece(
+                        Math.random() * window.innerWidth,
+                        window.innerHeight
+                    );
+                }, i * 20);
+            }
+            
+            // Анимация элементов
+            animateElements();
+            
+            // Звуковое сопровождение (если разрешено)
+            playPartySound();
+        }
+        
+        // Создание одного элемента конфетти
+        function createConfettiPiece(x, y) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti-piece';
+            
+            // Случайные цвета
+            const colors = ['#ff9ff3', '#feca57', '#1dd1a1', '#54a0ff', '#ff6b6b', '#48dbfb'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.backgroundColor = color;
+            
+            // Случайный размер
+            const size = 5 + Math.random() * 10;
+            confetti.style.width = size + 'px';
+            confetti.style.height = size + 'px';
+            
+            // Случайная форма
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '50%';
+            }
+            
+            // Начальная позиция
+            confetti.style.position = 'fixed';
+            confetti.style.left = x + 'px';
+            confetti.style.top = y + 'px';
+            confetti.style.opacity = '1';
+            
+            // Анимация
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = 15 + Math.random() * 10;
+            const vx = Math.cos(angle) * velocity;
+            const vy = Math.sin(angle) * velocity;
+            const rotate = Math.random() * 360;
+            
+            confetti.style.transform = `translate(0, 0) rotate(0deg)`;
+            
+            // Добавляем в контейнер
+            document.getElementById('confetti').appendChild(confetti);
+            
+            // Анимация движения
+            let posX = x;
+            let posY = y;
+            let rotation = rotate;
+            let gravity = 0.3;
+            
+            function animate() {
+                posX += vx;
+                posY += vy;
+                rotation += vx;
+                
+                vy += gravity;
+                
+                confetti.style.left = posX + 'px';
+                confetti.style.top = posY + 'px';
+                confetti.style.transform = `rotate(${rotation}deg)`;
+                confetti.style.opacity = 1 - (posY / window.innerHeight);
+                
+                if (posY < window.innerHeight) {
+                    requestAnimationFrame(animate);
+                } else {
+                    confetti.remove();
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Анимация элементов страницы
+        function animateElements() {
+            const elements = document.querySelectorAll('h1, .age, .message, .gift, .cake, .footer');
+            
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.animation = 'pulse 0.5s';
+                    setTimeout(() => {
+                        el.style.animation = '';
+                    }, 500);
+                }, index * 200);
+            });
+        }
+        
+        // Воспроизведение звука праздника
+        function playPartySound() {
+            try {
+                // Создаем контекст аудио
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    const audioCtx = new AudioContext();
+                    
+                    // Создаем осциллятор для звука
+                    const oscillator = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+                    
+                    // Настройки звука
+                    oscillator.type = 'sine';
+                    oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); // Нота C5
+                    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                    
+                    // Включаем и выключаем звук
+                    oscillator.start();
+                    gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.5);
+                    
+                    setTimeout(() => {
+                        oscillator.stop();
+                    }, 500);
+                }
+            } catch (e) {
+                console.log("Аудио не поддерживается или заблокировано");
+            }
+        }
+        
+        // Инициализация шариков при загрузке
+        window.addEventListener('load', () => {
+            createBalloons();
+        });
+    </script>
+</body>
+</html>
